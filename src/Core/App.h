@@ -27,6 +27,7 @@ public:
 	void Run();
 
 protected:
+	virtual void Update();
 	template <typename T>
 	T* CreateEntity(const char*, SDL_Rect, SDL_Rect);
 	void DestroyEntity(Entity* entity);
@@ -34,7 +35,6 @@ protected:
 private:
 	void Init();
 	void HandleEvents();
-	void Update();
 
 	void RenderBegin();
 	void Render();

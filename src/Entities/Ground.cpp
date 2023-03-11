@@ -1,11 +1,11 @@
 #include "Ground.h"
 
-Ground::Ground(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Rect dest)
-	:Entity(renderer, texturePath, src, dest) {
-	startPosX = dest.x;
+Ground::Ground(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Rect rect)
+	:Entity(renderer, texturePath, src, rect) {
+	startPosX = rect.x;
 }
 
 void Ground::Update() {
-	dest.x -= 1;
-	if (dest.x + dest.w < startPosX) dest.x = startPosX;
+	rect.x -= 2;
+	if (rect.x + rect.w < startPosX) rect.x = startPosX;
 }

@@ -9,7 +9,7 @@ public:
 	SDL_Renderer* renderer;
 	SDL_Texture* texture;
 	SDL_Rect src;
-	SDL_Rect dest;
+	SDL_Rect rect;
 
 	Entity();
 	Entity(SDL_Renderer*, const char*);
