@@ -6,6 +6,9 @@
 class Entity {
 public:
 	bool enabled = true;
+	double angle = 0;
+	SDL_Point center = {0,0};
+	SDL_RendererFlip flip = SDL_FLIP_NONE;
 	SDL_Renderer* renderer;
 	SDL_Texture* texture;
 	SDL_Rect src;

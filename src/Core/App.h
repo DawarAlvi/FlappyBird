@@ -5,8 +5,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "Input.h"
 #include "Entity.h"
+#include "Input.h"
+#include "Time.h"
 
 class App {
 public:
@@ -33,6 +34,13 @@ protected:
 	void DestroyEntity(Entity* entity);
 
 private:
+	int targetFrameRate = 60;
+	int frameStartTicks = 0;
+	int frameEndTicks = 0;
+	int frameTicks = 0;
+	float targetWaitTicks = 1000.0f / targetFrameRate;
+	float waitTicks = 0.0f;
+
 	void Init();
 	void HandleEvents();
 

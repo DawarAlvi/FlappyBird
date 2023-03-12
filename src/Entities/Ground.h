@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Core/Entity.h"
-#include "Core/Input.h"
+#include "Core/Core.h"
+#include "GameState.h"
 
 class Ground : public Entity {
 public:

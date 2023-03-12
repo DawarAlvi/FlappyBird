@@ -24,5 +24,5 @@ void Entity::Update() { }
 
 void Entity::Render()
 {
-	SDL_RenderCopy(renderer, texture, &src, &rect);
+	SDL_RenderCopyEx(renderer, texture, &src, &rect, angle, &center, flip);
 }

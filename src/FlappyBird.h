@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Core/App.h"
+#include "Core/Core.h"
+#include "Core/PreferDiscreteGPU.h"
+
 #include <Entities/Ground.h>
 #include <Entities/Pipe.h>
 #include <Entities/Bird.h>

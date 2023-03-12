@@ -6,6 +6,6 @@ Ground::Ground(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SD
 }
 
 void Ground::Update() {
-	rect.x -= 2;
+	rect.x -= GameState::scrollSpeed;
 	if (rect.x + rect.w < startPosX) rect.x = startPosX;
 }

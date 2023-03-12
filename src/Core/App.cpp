@@ -23,7 +23,7 @@ void App::Init() {
 		exit(1);
 	}
 
-	renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_ACCELERATED);
+	renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (!renderer) {
 		SDL_LogError(SDL_LOG_PRIORITY_ERROR, "Failed to create SDL renderer!");
 		exit(1);
@@ -43,9 +43,6 @@ void App::Run() {
 		RenderEnd();
 
 		LateUpdate();
-
-		//TODO: calculate frame time
-		SDL_Delay(16);
 	}
 
 	SDL_DestroyRenderer(renderer);
@@ -102,4 +99,19 @@ void App::RenderEnd() {
 
 void App::LateUpdate() {
 	Input::prevKeys = Input::keys;
+
+
+	frameEndTicks = SDL_GetTicks();
+	frameTicks = frameEndTicks - frameStartTicks;
+
+	waitTicks = targetWaitTicks - frameTicks;
+	if (waitTicks < 0) waitTicks = 0;
+	if (waitTicks > targetWaitTicks) waitTicks = targetWaitTicks;
+	
+	SDL_Delay(waitTicks);
+
+	Time::dt = Time::frames == 0 ? 0 : (float)(frameTicks + waitTicks) / 1000.0f;
+	Time::frames += 1;
+
+	frameStartTicks = SDL_GetTicks();
 }
