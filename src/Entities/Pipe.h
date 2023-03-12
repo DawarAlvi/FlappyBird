@@ -11,6 +11,7 @@ public:
 	static int maxYpos;
 
 	int startPosX = 0;
+	bool passed = false;
 	bool isUpperPipe = false;
 	Pipe* lowerPipe;
 

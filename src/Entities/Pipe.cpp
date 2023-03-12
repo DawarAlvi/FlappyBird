@@ -14,6 +14,7 @@ void Pipe::Update()
 	if (rect.x + rect.w < 0) {
 		rect.x = startPosX;
 		SetRandomYpos();
+		passed = false;
 	}
 }
 
