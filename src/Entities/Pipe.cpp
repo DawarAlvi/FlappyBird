@@ -10,11 +10,17 @@ Pipe::Pipe(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Re
 
 void Pipe::Update()
 {
-	rect.x -= GameState::scrollSpeed;;
-	if (rect.x + rect.w < 0) {
-		rect.x = startPosX;
-		SetRandomYpos();
-		passed = false;
+	switch (GameState::currentScene) {
+	case GameState::TapToPlay: {
+	} break;
+	case GameState::Playing: {
+		rect.x -= GameState::scrollSpeed;;
+		if (rect.x + rect.w < 0) {
+			rect.x = startPosX;
+			SetRandomYpos();
+			passed = false;
+		}
+	} break;
 	}
 }
 

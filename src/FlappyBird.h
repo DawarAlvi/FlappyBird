@@ -6,6 +6,7 @@
 #include <Entities/Ground.h>
 #include <Entities/Pipe.h>
 #include <Entities/Bird.h>
+#include <Entities/TapMessage.h>
 
 class FlappyBird : public App {
 public:
@@ -14,11 +15,16 @@ public:
 
 private:
 	Entity* background;
+	
 	Pipe* lowerPipe1;
 	Pipe* lowerPipe2;
 	Pipe* upperPipe1;
 	Pipe* upperPipe2;
+	
 	Bird* bird;
+	
 	Ground* ground1;
 	Ground* ground2;
+
+	TapMessage* tapMessage;
 };

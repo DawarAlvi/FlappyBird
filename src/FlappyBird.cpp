@@ -1,4 +1,5 @@
 #include "FlappyBird.h"
+#include <iostream>
 
 int main(int argc, char* argv[]) {
 	FlappyBird app("Flappy Bird", 143, 256, 3);
@@ -39,7 +40,7 @@ FlappyBird::FlappyBird(const char* title, int width, int height, int scale)
 	bird = CreateEntity<Bird>(
 		"data/sprites/atlas.png",
 		{ 264, 90, 17, 12 },
-		{ windowWidth / 4, windowHeight / 2, 17 * scale, 12 * scale });
+		{ windowWidth / 4, 360, 17 * scale, 12 * scale });
 
 	ground1 = CreateEntity <Ground>(
 		"data/sprites/atlas.png",
@@ -50,6 +51,11 @@ FlappyBird::FlappyBird(const char* title, int width, int height, int scale)
 		"data/sprites/atlas.png",
 		{ 146, 0, 154,56 },
 		{ 154 * scale, GameState::groundLevel , 154 * scale, 56 * scale });
+
+	tapMessage = CreateEntity <TapMessage>(
+		"data/sprites/atlas.png",
+		{ 156, 122, 55,49 },
+		{ windowWidth/2 - (156/2), 320, 55 * scale, 49 * scale});
 
 	upperPipe1->startPosX
 	= upperPipe2->startPosX
@@ -64,12 +70,22 @@ FlappyBird::FlappyBird(const char* title, int width, int height, int scale)
 void FlappyBird::Update() {
 	App::Update();
 
+	switch (GameState::currentScene) {
+	case GameState::TapToPlay: {
+		if (Input::KeyJustPressed(SDLK_SPACE)) {
+			GameState::currentScene = GameState::Playing;
+		}
+	} break;
+	}
+
 	if (!upperPipe1->passed && bird->rect.x > upperPipe1->rect.x) {
 		GameState::score += 1;
 		upperPipe1->passed = true;
+		std::cout << "SCORE: " << GameState::score << std::endl;
 	}
 	if (!upperPipe2->passed && bird->rect.x > upperPipe2->rect.x) {
 		GameState::score += 1;
 		upperPipe2->passed = true;
+		std::cout << "SCORE: " << GameState::score << std::endl;
 	}
 }

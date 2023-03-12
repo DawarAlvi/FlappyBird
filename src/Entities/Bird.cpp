@@ -10,18 +10,30 @@ Bird::Bird(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Re
 }
 
 void Bird::Update() {
-	src = frames[currentFrame];
+	switch (GameState::currentScene) {
+	case GameState::TapToPlay: {
+		Animate();
+		Jump();
+	} break;
+	case GameState::Playing: {
+		Animate();
+		Fall();
+		Jump();
+		Collide();
+	} break;
+	}
 	
-	if (Time::frames % (int)(1/animSpeed) == 0)
-		currentFrame = (currentFrame + 1) % frames.size();
 
+}
+
+void Bird::Animate() {
+	src = frames[currentFrame];
+	if (Time::frames % (int)(1 / animSpeed) == 0)
+		currentFrame = (currentFrame + 1) % frames.size();
+}
+
+void Bird::Fall() {
 	rect.y += (int)acceleration;
-	if (Input::KeyJustPressed(SDLK_SPACE)) {
-		acceleration = -jumpForce * Time::dt;
-	}
-	else {
-		acceleration += gravity * Time::dt;
-	}
 
 	float x = acceleration;
 	float a = -jumpForce * Time::dt;
@@ -32,7 +44,19 @@ void Bird::Update() {
 	angle = (x - a) * ((d - c) / (b - a)) + c;
 	if (angle < c) angle = c;
 	if (angle > d) angle = d;
-	
+}
+
+void Bird::Jump()
+{
+	if (Input::KeyJustPressed(SDLK_SPACE)) {
+		acceleration = -jumpForce * Time::dt;
+	}
+	else {
+		acceleration += gravity * Time::dt;
+	}
+}
+
+void Bird::Collide() {
 	if (rect.y < 0) {
 		rect.y = 0;
 		acceleration = 0;
