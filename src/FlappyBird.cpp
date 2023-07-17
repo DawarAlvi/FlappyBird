@@ -71,9 +71,9 @@ void FlappyBird::Update() {
 	App::Update();
 
 	switch (GameState::currentScene) {
-	case GameState::TapToPlay: {
+	case GameState::GameScene::TapToPlay: {
 		if (Input::KeyJustPressed(SDLK_SPACE)) {
-			GameState::currentScene = GameState::Playing;
+			GameState::currentScene = GameState::GameScene::Playing;
 		}
 	} break;
 	}

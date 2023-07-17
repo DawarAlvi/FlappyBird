@@ -2,13 +2,13 @@
 
 struct GameState
 {
-	static enum GameScenes {
+	static enum class GameScene {
 		MainMenu,
 		TapToPlay,
 		Playing,
 		GameOver
 	};
-	static GameScenes currentScene;
+	static GameScene currentScene;
 	static int scrollSpeed;
 	static int groundLevel;
 	static int score;

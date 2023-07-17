@@ -22,7 +22,6 @@ public:
 
 	std::vector<Entity*> entities;
 	
-	App();
 	App(const char * title, int width, int height, int scale = 1);
 
 	void Run();

@@ -11,19 +11,17 @@ Bird::Bird(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Re
 
 void Bird::Update() {
 	switch (GameState::currentScene) {
-	case GameState::TapToPlay: {
+	case GameState::GameScene::TapToPlay: {
 		Animate();
 		Jump();
 	} break;
-	case GameState::Playing: {
+	case GameState::GameScene::Playing: {
 		Animate();
 		Fall();
 		Jump();
 		Collide();
 	} break;
 	}
-	
-
 }
 
 void Bird::Animate() {

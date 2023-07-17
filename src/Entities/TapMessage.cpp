@@ -8,10 +8,10 @@ TapMessage::TapMessage(SDL_Renderer* renderer, const char* texturePath, SDL_Rect
 void TapMessage::Update()
 {
 	switch (GameState::currentScene) {
-	case GameState::TapToPlay: {
+	case GameState::GameScene::TapToPlay: {
 		enabled = true;
 	} break;
-	case GameState::Playing: {
+	case GameState::GameScene::Playing: {
 		enabled = false;
 	} break;
 	}

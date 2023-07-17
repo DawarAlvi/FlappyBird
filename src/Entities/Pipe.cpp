@@ -11,9 +11,9 @@ Pipe::Pipe(SDL_Renderer* renderer, const char* texturePath, SDL_Rect src, SDL_Re
 void Pipe::Update()
 {
 	switch (GameState::currentScene) {
-	case GameState::TapToPlay: {
+	case GameState::GameScene::TapToPlay: {
 	} break;
-	case GameState::Playing: {
+	case GameState::GameScene::Playing: {
 		rect.x -= GameState::scrollSpeed;;
 		if (rect.x + rect.w < 0) {
 			rect.x = startPosX;
